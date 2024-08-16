@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "type": "completion",
+  "description": "Explain managed services to a user",
+  "execution_settings": {
+    "default": {
+      "max_tokens": 1200,
+      "temperature": 0.3
+    }
+  },
+  "input_variables": [
+    {
+      "name": "input",
+      "description": "Details about the service of interest",
+      "required": true
+    }
+  ]
+}
