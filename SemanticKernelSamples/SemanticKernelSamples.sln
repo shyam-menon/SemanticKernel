@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_RAG", "SK_RAG\SK_RAG.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_Agents", "SK_Agents\SK_Agents.csproj", "{14B8C79C-7EE6-4E96-84F4-012CB47BDDD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_MultiAgents", "SK_MultiAgents\SK_MultiAgents.csproj", "{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{14B8C79C-7EE6-4E96-84F4-012CB47BDDD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14B8C79C-7EE6-4E96-84F4-012CB47BDDD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14B8C79C-7EE6-4E96-84F4-012CB47BDDD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
