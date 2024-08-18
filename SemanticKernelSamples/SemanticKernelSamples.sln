@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.35201.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_GettingStarted", "SK_GettingStarted\SK_GettingStarted.csproj", "{C6AA44AB-6DB8-4F56-9A81-EC3F548667D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SK_GettingStarted", "SK_GettingStarted\SK_GettingStarted.csproj", "{C6AA44AB-6DB8-4F56-9A81-EC3F548667D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_FilebasedPlugins", "SK_FilebasedPlugins\SK_FilebasedPlugins.csproj", "{70A8FF3B-BD20-46CD-8F7B-2374B504696D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SK_FilebasedPlugins", "SK_FilebasedPlugins\SK_FilebasedPlugins.csproj", "{70A8FF3B-BD20-46CD-8F7B-2374B504696D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_RAG", "SK_RAG\SK_RAG.csproj", "{EF4D3E3C-E5C3-425B-BFD6-075BC015A4F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SK_RAG", "SK_RAG\SK_RAG.csproj", "{EF4D3E3C-E5C3-425B-BFD6-075BC015A4F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_Agents", "SK_Agents\SK_Agents.csproj", "{14B8C79C-7EE6-4E96-84F4-012CB47BDDD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SK_Agents", "SK_Agents\SK_Agents.csproj", "{14B8C79C-7EE6-4E96-84F4-012CB47BDDD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_MultiAgents", "SK_MultiAgents\SK_MultiAgents.csproj", "{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SK_MultiAgents", "SK_MultiAgents\SK_MultiAgents.csproj", "{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_AllinOne", "SK_AllinOne\SK_AllinOne.csproj", "{D5951D3A-63D2-4CBC-9369-37BE7515FD76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5951D3A-63D2-4CBC-9369-37BE7515FD76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5951D3A-63D2-4CBC-9369-37BE7515FD76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5951D3A-63D2-4CBC-9369-37BE7515FD76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5951D3A-63D2-4CBC-9369-37BE7515FD76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
