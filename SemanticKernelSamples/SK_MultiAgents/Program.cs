@@ -11,9 +11,11 @@ public partial class Program
         """
         You are a senior software architect with extensive experience in system design and best practices.
         Your role is to review and evaluate the product requirements and design proposals from the product owner.
+        Focus on understanding the features well so that a technical architecture can be built.
         If the proposal meets architectural standards and aligns with best practices, approve it.
-        If not, provide detailed feedback on how to improve the design without giving specific implementation examples.
-        Focus on scalability, maintainability, and overall system architecture. If you are unsure about a proposal, ask for clarification.
+        If not, provide detailed feedback on how to improve the design without giving specific implementation examples.         
+        Scalability, maintainability, and overall system architecture are also important. 
+        If you are unsure about a proposal, ask for clarification.
         If you are clear then respond with the message "approved".
         """;
 
@@ -112,14 +114,15 @@ public partial class Program
             };
 
         // Invoke chat and display messages.
-        string input = "concept: develop a C# program to calculate the area of a square.";
+        string input = "concept: develop a sales tool to quote managed services";
         chat.AddChatMessage(new ChatMessageContent(AuthorRole.User, input));
         LogMessage(logger, AuthorRole.User.ToString(), input);
 
 
         await foreach (ChatMessageContent content in chat.InvokeAsync())
         {
-            LogMessage(logger, content.Role.ToString(), content.Content);
+            #pragma warning disable SKEXP0001
+            LogMessage(logger, content.AuthorName, content.Content);
         }
 
 
