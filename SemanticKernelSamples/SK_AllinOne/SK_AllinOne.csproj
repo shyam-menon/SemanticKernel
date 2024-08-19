@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.KernelMemory.AI.OpenAI" Version="0.70.240803.1" />
     <PackageReference Include="Microsoft.KernelMemory.Core" Version="0.70.240803.1" />
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.17.1" />
     <PackageReference Include="Microsoft.SemanticKernel.Agents.Abstractions" Version="1.18.0-alpha" />
