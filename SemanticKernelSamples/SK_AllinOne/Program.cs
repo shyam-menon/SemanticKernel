@@ -145,6 +145,8 @@ public partial class Program
                     }
             };
 
+        ChatHistory chathistory = [];
+
         
         var input = contextWithUserStoryAndAcceptanceCriterion;
         chat.AddChatMessage(new ChatMessageContent(AuthorRole.User, input));       
@@ -152,13 +154,23 @@ public partial class Program
 
         await foreach (ChatMessageContent content in chat.InvokeAsync())
         {
-            Console.WriteLine($"# {content.Role} - : {content.InnerContent}");
+            chathistory.Add(content);
+            WriteAgentChatMessage(content);            
         }
 
 
         Console.WriteLine($"# IS COMPLETE: {chat.IsComplete}");
 
 
+    }
+
+    static void WriteAgentChatMessage(ChatMessageContent message)
+    {
+        #pragma warning disable SKEXP0001
+        string authorExpression = message.Role == AuthorRole.User ? string.Empty : $" - {message.AuthorName ?? "*"}";
+        string contentExpression = string.IsNullOrWhiteSpace(message.Content) ? string.Empty : message.Content;
+        Console.ForegroundColor = message.Role == AuthorRole.User ? ConsoleColor.Cyan : ConsoleColor.White;
+        Console.WriteLine($"\n# {message.Role}{authorExpression} : {contentExpression}");
     }
 
     private sealed class ApprovalTerminationStrategy : TerminationStrategy
