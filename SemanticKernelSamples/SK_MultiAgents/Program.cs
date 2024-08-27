@@ -70,13 +70,13 @@ public partial class Program
         apiKey: apiKey // Your OpenAI API key
         );
 
-       var architect_kernel = architectBuilder.Build();
-       var productOwner_kernel = productOwnerBuilder.Build();
+        var architect_kernel = architectBuilder.Build();
+        var productOwner_kernel = productOwnerBuilder.Build();
 
-       //var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
+        //var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 
         // Define the agents
-        #pragma warning disable SKEXP0110
+#pragma warning disable SKEXP0110
         ChatCompletionAgent agentArchitect =
             new()
             {
@@ -93,6 +93,15 @@ public partial class Program
                Kernel = productOwner_kernel
            };
 
+        //Group chat
+        await GroupChat(logger, agentArchitect, agentProductOwner);
+
+        //Explicit chat
+        //await ExplicitChat(logger, agentProductOwner, agentArchitect);
+    }
+
+    private static async Task GroupChat(ILogger logger, ChatCompletionAgent agentArchitect, ChatCompletionAgent agentProductOwner)
+    {
         // Create a chat for agent interaction.
         AgentGroupChat chat =
             new(agentProductOwner, agentArchitect)
@@ -127,6 +136,41 @@ public partial class Program
 
 
         logger.LogInformation($"# IS COMPLETE: {chat.IsComplete}");
+    }
+
+    //Sample code to demonstrate the chat interaction between the agents
+    private static async Task ExplicitChat(ILogger logger, ChatCompletionAgent agentProductOwner, ChatCompletionAgent agentArchitect)
+    {
+        // Create a chat for agent interaction.        
+
+        //Create the chat history to capture the agent interaction
+        ChatHistory chat = [];
+
+        // Invoke chat and display messages.        
+        ChatMessageContent input = new(AuthorRole.User, "concept: develop a sales tool to quote managed services");
+        chat.Add(input);
+        LogMessage(logger, AuthorRole.User.ToString(), input.ToString());
+
+        int turnCount = 0;
+        bool isApproved = false;
+        do
+        {
+            ChatCompletionAgent activeAgent = turnCount % 2 == 0 ? agentProductOwner : agentArchitect;
+            await foreach (ChatMessageContent response in activeAgent.InvokeAsync(chat))
+            {
+                ++turnCount;
+
+                chat.Add(response);
+                LogMessage(logger, activeAgent.Name, response.Content);
+
+                isApproved =
+                    (activeAgent == agentArchitect) &&
+                    (response.Content?.Contains("approved", StringComparison.OrdinalIgnoreCase) ?? false);
+            }
+        }
+        while (!isApproved && turnCount < 10);
+
+        Console.WriteLine("Chat completed.");
     }
 
     private static void LogMessage(ILogger logger, string role, string message)
