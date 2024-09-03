@@ -3,26 +3,59 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 
-// Get the API key from environment variables
-var apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
-
-if (string.IsNullOrEmpty(apiKey))
-{
-    Console.WriteLine("Please set the OPENAI_API_KEY environment variable.");
-    return;
-}
+//Set this to true to use OpenAI, false to use Azure
+var useOpenAPI = false;
+string? apiKey = string.Empty;
 
 Console.WriteLine("Launching Semantic Kernel Sandbox for Managed Services");
 
 // Initialize the Semantic Kernel
 var builder = Kernel.CreateBuilder();
 
-// Add OpenAI Chat Completion Service
-builder.AddOpenAIChatCompletion(
-    //modelId: "gpt-3.5-turbo", // Specify the model you want to use
-    modelId: "gpt-4o-mini",
-    apiKey: apiKey // Your OpenAI API key
-);
+if (useOpenAPI)
+{
+    // Get the Open AI API key from environment variables
+    apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
+
+    if (string.IsNullOrEmpty(apiKey))
+    {
+        Console.WriteLine("Please set the OPENAI_API_KEY environment variable.");
+        return;
+    }
+
+    // Add OpenAI Chat Completion Service
+    builder.AddOpenAIChatCompletion(
+        //modelId: "gpt-3.5-turbo", // Specify the model you want to use
+        modelId: "gpt-4o-mini",
+        apiKey: apiKey // Your OpenAI API key
+    );
+}
+else
+{
+    // Get the Azure API key from environment variables
+    apiKey = Environment.GetEnvironmentVariable("AZURE_API_KEY");
+
+    if (string.IsNullOrEmpty(apiKey))
+    {
+        Console.WriteLine("Please set the AZURE_API_KEY environment variable.");
+        return;
+    }
+
+    var endpoint = Environment.GetEnvironmentVariable("AZURE_ENDPOINT");
+    if (string.IsNullOrEmpty(endpoint))
+    {
+        Console.WriteLine("Please set the AZURE_ENDPOINT environment variable.");
+        return;
+    }
+
+    builder.AddAzureOpenAIChatCompletion(
+    "GPT-4o",
+    endpoint,
+    apiKey,
+    "GPT-4o");
+
+}
+
 var kernel = builder.Build();
 
 // Create chat history
