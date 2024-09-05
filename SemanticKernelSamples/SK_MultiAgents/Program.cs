@@ -94,10 +94,10 @@ public partial class Program
            };
 
         //Group chat
-        await GroupChat(logger, agentArchitect, agentProductOwner);
+        //await GroupChat(logger, agentArchitect, agentProductOwner);
 
         //Explicit chat
-        //await ExplicitChat(logger, agentProductOwner, agentArchitect);
+        await ExplicitChat(logger, agentProductOwner, agentArchitect);
     }
 
     private static async Task GroupChat(ILogger logger, ChatCompletionAgent agentArchitect, ChatCompletionAgent agentProductOwner)
