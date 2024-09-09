@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SK_Agents", "SK_Agents\SK_A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SK_MultiAgents", "SK_MultiAgents\SK_MultiAgents.csproj", "{15DECEDC-0E6D-48B0-AACB-7C9C73CE562E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_AllinOne", "SK_AllinOne\SK_AllinOne.csproj", "{D5951D3A-63D2-4CBC-9369-37BE7515FD76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SK_AllinOne", "SK_AllinOne\SK_AllinOne.csproj", "{D5951D3A-63D2-4CBC-9369-37BE7515FD76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_SemanticMemory", "SK_SemanticMemory\SK_SemanticMemory.csproj", "{A3630C3D-9610-4DE0-976B-857701C47FF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{D5951D3A-63D2-4CBC-9369-37BE7515FD76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5951D3A-63D2-4CBC-9369-37BE7515FD76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5951D3A-63D2-4CBC-9369-37BE7515FD76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3630C3D-9610-4DE0-976B-857701C47FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3630C3D-9610-4DE0-976B-857701C47FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3630C3D-9610-4DE0-976B-857701C47FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3630C3D-9610-4DE0-976B-857701C47FF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
