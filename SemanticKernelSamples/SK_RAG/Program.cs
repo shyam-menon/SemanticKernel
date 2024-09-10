@@ -31,7 +31,7 @@ if (await memory.IsDocumentReadyAsync("doc001") && await memory.IsDocumentReadyA
 
 
     //5. Start the chat
-    //I want add the functionality where a partner can create a quote to sell solutions, which can then be onboarded and be billed. Which are the systems that would need to change for this?
+    //I want add the functionality where a partner can create a quote to sell solutions, which can then be onboarded and be billed. Which are the systems in CBA that would need to change for this and why?
     while (true  )
     {
         var readUserInput = Console.ReadLine();
