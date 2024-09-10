@@ -77,14 +77,12 @@ class Program
     static async Task ProcessPdfAndStoreInMemory(ISemanticTextMemory memory, string pdfPath)
     {
         var text = ExtractTextFromPdf(pdfPath);
-        var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-        string result = string.Join(" ", lines);
-        var chunks = TextChunker.SplitPlainTextLines(result, 1000);
+        var chunks = TextChunker.SplitPlainTextLines(text, 1000);
 
         for (int i = 0; i < chunks.Count; i++)
         {
             string chunkText = string.Join(Environment.NewLine, chunks[i]);
-            await memory.SaveInformationAsync($"chunk{i}", chunkText, $"chunk{i}");
+            await memory.SaveInformationAsync("default", chunkText, $"chunk{i}");
         }
     }
 
@@ -106,21 +104,6 @@ class Program
         // Search for relevant memories
         var searchResults = memory.SearchAsync("default", question, limit: 1, minRelevanceScore: 0.7);
 
-        var anyResults = false;
-        await foreach (var mem in searchResults)
-        {
-            anyResults = true;
-            Console.WriteLine($"Found memory - ID: {mem.Metadata.Id}, Score: {mem.Relevance}, Text: {mem.Metadata.Text.Substring(0, Math.Min(50, mem.Metadata.Text.Length))}...");
-        }
-
-        if (!anyResults)
-        {
-            Console.WriteLine("No results found in memory.");
-            return "I couldn't find any relevant information to answer your question.";
-        }
-
-        // Reset the enumerator
-        searchResults = memory.SearchAsync("default", question, limit: 1, minRelevanceScore: 0.7);
         var relevantMemory = await searchResults.FirstOrDefaultAsync();
 
         if (relevantMemory == null)
