@@ -96,7 +96,9 @@ while ((userInput = Console.ReadLine()) != null)
     // Enable auto function calling
     OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new()
     {
-        ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
+        //ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
+        #pragma warning disable SKEXP0001
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()            
     };
 
 
