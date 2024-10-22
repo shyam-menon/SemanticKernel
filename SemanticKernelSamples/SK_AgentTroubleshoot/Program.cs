@@ -27,17 +27,17 @@ namespace PrinterTroubleshootingSample
                 apiKey,
                 "GPT-4o",
                 logger
-            );
-
-            Console.WriteLine("Printer Troubleshooting Assistant");
-            Console.WriteLine("--------------------------------");
-            Console.WriteLine("1. Run diagnostic tests");
-            Console.WriteLine("2. Enter custom issue");
-            Console.WriteLine("3. Reset chat");
-            Console.WriteLine("4. Exit");
+            );            
 
             while (true)
             {
+                Console.WriteLine("Printer Troubleshooting Assistant");
+                Console.WriteLine("--------------------------------");
+                Console.WriteLine("1. Run diagnostic tests");
+                Console.WriteLine("2. Enter custom issue");
+                Console.WriteLine("3. Reset chat");
+                Console.WriteLine("4. Exit");
+
                 Console.Write("\nSelect an option (1-4): ");
                 var choice = Console.ReadLine();
 
@@ -49,6 +49,7 @@ namespace PrinterTroubleshootingSample
 
                     case "2":
                         Console.Write("\nDescribe your printer issue: ");
+                        //My printer is intermittently printing blank pages after the first few prints, despite having full ink cartridges, updated drivers, and no error messages on the display.
                         var issue = Console.ReadLine();
                         if (!string.IsNullOrEmpty(issue))
                         {

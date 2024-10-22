@@ -79,7 +79,7 @@ namespace SK_AgentTroubleshoot
                 """,
                 safeParameterNames: "lastmessage");
 
-            const string TerminationToken = "yes";
+            const string TerminationToken = "ALL ISSUES RESOLVED";
 
             KernelFunction terminationFunction =
                 AgentGroupChat.CreatePromptFunctionForStrategy(
@@ -113,20 +113,20 @@ namespace SK_AgentTroubleshoot
                         // Returns the entire result value as a string.
                         ResultParser = (result) => result.GetValue<string>() ?? _diagnosticAgent.Name
                     },
-                    TerminationStrategy = CreateTerminationStrategy()
-                    //TerminationStrategy = new KernelFunctionTerminationStrategy(terminationFunction, _kernel)
-                    //{
-                    //    // Only evaluate for editor's response
-                    //    Agents = [_diagnosticAgent],
-                    //    // Save tokens by only including the final response
-                    //    HistoryReducer = historyReducer,
-                    //    // The prompt variable name for the history argument.
-                    //    HistoryVariableName = "lastmessage",
-                    //    // Limit total number of turns
-                    //    MaximumIterations = 12,
-                    //    // Customer result parser to determine if the response is "yes"
-                    //    ResultParser = (result) => result.GetValue<string>()?.Contains(TerminationToken, StringComparison.OrdinalIgnoreCase) ?? false
-                    //}
+                    //TerminationStrategy = CreateTerminationStrategy()
+                    TerminationStrategy = new KernelFunctionTerminationStrategy(terminationFunction, _kernel)
+                    {
+                        // Only evaluate for verification agent's response
+                        Agents = [_verificationAgent],
+                        // Save tokens by only including the final response
+                        HistoryReducer = historyReducer,
+                        // The prompt variable name for the history argument.
+                        HistoryVariableName = "lastmessage",
+                        // Limit total number of turns
+                        MaximumIterations = 12,
+                        // Customer result parser to determine if the response is "yes"
+                        ResultParser = (result) => result.GetValue<string>()?.Contains(TerminationToken, StringComparison.OrdinalIgnoreCase) ?? false
+                    }
                 }
             };
             _logger = logger;
