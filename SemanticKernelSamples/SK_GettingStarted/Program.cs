@@ -4,7 +4,7 @@ using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 //Set this to true to use OpenAI, false to use Azure
-var useOpenAPI = false;
+var useOpenAPI = true;
 string? apiKey = string.Empty;
 
 Console.WriteLine("Launching Semantic Kernel Sandbox for Managed Services");
