@@ -28,3 +28,5 @@
 /SemanticKernelSamples/SK_SemanticMemory/bin/Debug/net8.0
 /SemanticKernelSamples/SK_AgentTroubleshoot/bin/Debug/net8.0
 /SemanticKernelSamples/SK_AgentTroubleshoot/obj
+/SemanticKernelSamples/SK_RAGOpenAI/bin/Debug/net8.0
+/SemanticKernelSamples/SK_RAGOpenAI/obj
