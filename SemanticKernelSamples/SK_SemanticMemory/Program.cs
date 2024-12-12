@@ -65,7 +65,7 @@ class Program
         // Simulating RAG
         while (true)
         {
-            Console.Write("Enter your question (or 'exit' to quit): ");
+            Console.Write("RAG with Azure Open AI + Semantic Memory. Enter your question (or 'exit' to quit): ");
             //I want add the functionality where a partner can create a quote to sell solutions, which can then be onboarded and be billed. Which are the systems in CBA that would need to change for this and why?
             string question = Console.ReadLine();
             if (question.ToLower() == "exit") break;

@@ -40,6 +40,7 @@ if (await memory.IsDocumentReadyAsync("doc001") && await memory.IsDocumentReadyA
         {
             //Get the answer using memory
             var answer = await memory.AskAsync(input);
+            Console.WriteLine("RAG with Open AI + Kernel memory");
             Console.WriteLine($"Question: {input}\n\nAnswer: {answer.Result}");
 
             Console.WriteLine("Sources:\n");

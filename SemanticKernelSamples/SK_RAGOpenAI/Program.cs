@@ -75,7 +75,7 @@ public class Program
         await collection.CreateCollectionIfNotExistsAsync();
 
         // Load documents from markdown files
-        Console.WriteLine("Loading markdown files...");
+        Console.WriteLine("RAG with Open AI and InMemory vector store. Loading markdown files...");
         var markdownPath = Path.Combine(Directory.GetCurrentDirectory(), "docs"); // Folder containing your markdown files
         var documents = await MarkdownFileReader.ReadMarkdownFilesFromDirectory(markdownPath);
        
