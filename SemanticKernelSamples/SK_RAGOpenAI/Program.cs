@@ -5,6 +5,9 @@ using Microsoft.SemanticKernel.Connectors.InMemory;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Embeddings;
 using System.Text;
+using SK_RAGOpenAI;
+
+#pragma warning disable SKEXP0001
 
 // Document model class
 public class Document
@@ -66,7 +69,7 @@ public class Program
 
         // Create kernel with chat completion service
         var kernel = Kernel.CreateBuilder()
-            .AddOpenAIChatCompletion("gpt-3.5-turbo", OpenAIApiKey)
+            .AddOpenAIChatCompletion("gpt-4o-mini", OpenAIApiKey)
             .Build();
 
         // Initialize vector store and collection
@@ -95,6 +98,9 @@ public class Program
             });
         }
 
+        var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
+        var userStoryAgent = new UserStoryAgent(chatCompletionService, collection, embeddingGeneration);
+
         // Create a search function that we'll use in our RAG prompt
         var searchFunction = async (string query) =>
         {
@@ -117,39 +123,69 @@ public class Program
         {
             // Get user input
             Console.Write("\nEnter your question (or 'exit' to quit): ");
-            var question = Console.ReadLine();
+            var input = Console.ReadLine();
 
-            if (string.IsNullOrEmpty(question) || question.ToLower() == "exit")
+            if (string.IsNullOrEmpty(input) || input.ToLower() == "exit")
                 break;
 
-            // Search for relevant documents
-            var contextInfo = await searchFunction(question);
+            if (InputAnalyzer.IsUserStoryRequest(input))
+            {
+                var userStory = await userStoryAgent.GenerateUserStory(input);
+                await File.WriteAllTextAsync($"UserStory_{DateTime.Now:yyyyMMddHHmmss}.md", userStory);
+                Console.WriteLine("\nGenerated User Story:\n" + userStory);
+            }
+            else
+            {
+                var response = await ProcessRagQuery(input, collection, embeddingGeneration, chatCompletionService);
+                Console.WriteLine("\nResponse: " + response);               
 
-            // Create RAG prompt
-            var prompt = $$"""
-                Use the following information to answer the question. 
-                If you cannot answer the question based on the information provided, say "I don't have enough information to answer that question."
+                // Add AI response to chat history
+                chatHistory.AddAssistantMessage(response);
+            }
 
-                Context information:
-                {{contextInfo}}
+           
 
-                Question: {{question}}
-
-                Answer: 
-                """;
-
-            // Add user question to chat history
-            chatHistory.AddUserMessage(prompt);
-
-            // Get AI response
-            var response = await kernel.GetRequiredService<IChatCompletionService>()
-                .GetChatMessageContentAsync(chatHistory);
-
-            // Print response
-            Console.WriteLine("\nAssistant: " + response.Content);
-
-            // Add AI response to chat history
-            chatHistory.AddAssistantMessage(response.Content);
+            
         }
+    }
+
+    private static async Task<string> ProcessRagQuery(
+   string query,
+   IVectorStoreRecordCollection<string, Document> collection,
+   ITextEmbeddingGenerationService embeddingGeneration,
+   IChatCompletionService chatCompletionService)
+    {
+        // Generate embedding for query
+        var queryEmbedding = await embeddingGeneration.GenerateEmbeddingAsync(query);
+
+        // Search for relevant documents
+        var searchResults = await collection.VectorizedSearchAsync(queryEmbedding, new() { Top = 2 });
+
+        // Build context from search results
+        var contextBuilder = new StringBuilder();
+        await foreach (var result in searchResults.Results)
+        {
+            contextBuilder.AppendLine($"Content: {result.Record.Content}\n");
+        }
+
+        // Create RAG prompt
+        var prompt = $$"""
+       Use the following information to answer the question. 
+       If you cannot answer based on the provided information, say "I don't have enough information to answer that question."
+
+       Context:
+       {{contextBuilder}}
+
+       Question: {{query}}
+
+       Answer:
+       """;
+
+        // Get AI response
+        var chatHistory = new ChatHistory();
+        chatHistory.AddUserMessage(prompt);
+        var response = await chatCompletionService.GetChatMessageContentAsync(chatHistory);
+
+        return response.Content;
     }
 }
