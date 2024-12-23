@@ -115,11 +115,29 @@
   - POST api/v1/TMC/Software
   - PUT api/v1/TMC/Project
   - POST api/v1/TMC/OnboardContract
+  - PUT api/v1/TMC/Project/CustomHeaders
 
 ### ITSM APIs
 - Service Management APIs
   - PUT api/v1/ITSM/CustomHeaders
   - PUT api/v1/ITSM/Opportunity
+  
+### Apollo APIs
+- Customer search
+  - GET api/v1/Apollo/apolloCustomerSearch
+
+### BIRD APIs
+- Reporting
+  - POST api/v1/BIRD/GetIBRReportData
+  
+### CDCA APIs
+- Device connectivity
+  - POST api/v1/CDCA/Device/Register
+  - POST api/v1/CDCA/Device/DeRegister
+  - POST api/v1/CDCA/DeviceStatus
+
+### Configurator APIs
+- GET api/v1/Configurator
 
 ### Device Configuration APIs
 - POST api/v1/DC/AddCustomer
@@ -127,9 +145,47 @@
 - POST api/v1/DC/SaveFleetPreferences
 - GET api/v1/DC/CustomerFleetView
 
+### DCC
+- POST api/v1/DCC/User
+- POST api/v1/DCC/Customer
+
 ### Enterprise Catalog APIs
 - GET api/v1/EC/EnterpriseCatalog
+- POST GetAccessToken
 - POST api/v1/EC/DealService
+
+### GTS
+- Global trade System
+	- GET api/v1/GTS/Check
+
+### HPID
+- POST api/v1/Hpid/accessToken
+- GET api/v1/Hpid/authCode
+
+### JAM
+- POST GetAccessToken
+- DELETE api/v1/JAM/Device
+
+### MDS
+- GET api/v1/MDS/PrintEngineCapability
+- GET api/v1/MDS/DataCollectorType
+- GET api/v1/MDS/DeviceTypeFamily
+
+### MS4
+- POST api/v1/MS4/Search
+- POST api/v1/MS4/BPIDAutomateCreationRequest
+- POST api/v1/MS4/ReferenceIDSearch
+
+### MSD
+- HP (Microsoft Dynamics)
+ - POST api/v1/MSD/lookup
+ 
+### PH
+- Price Hub
+ - POST GetAccessToken
+ - POST api/v1/PriceHub/ValidatePPID
+ - GET api/v1/PriceHub/deal/status
+ - POST api/v1/PriceHub/transfer/deal
 
 ## Infrastructure Details
 
