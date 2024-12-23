@@ -8,11 +8,91 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="docs\arc-doc.md" />
+    <None Remove="docs\brim-doc.md" />
+    <None Remove="docs\cdax-doc.md" />
+    <None Remove="docs\convergent-systems-doc.md" />
+    <None Remove="docs\dcc-doc.md" />
+    <None Remove="docs\deal-source-doc.md" />
+    <None Remove="docs\dsm-doc.md" />
+    <None Remove="docs\enablement-service-doc.md" />
+    <None Remove="docs\fmaudit-doc.md" />
+    <None Remove="docs\fulfillment-service-doc.md" />
+    <None Remove="docs\itsm-doc.md" />
+    <None Remove="docs\jam-doc.md" />
     <None Remove="docs\MPC.md" />
+    <None Remove="docs\ms4-doc.md" />
+    <None Remove="docs\obligation-service-doc.md" />
+    <None Remove="docs\paladin-doc.md" />
+    <None Remove="docs\s4-doc.md" />
+    <None Remove="docs\sds-doc.md" />
+    <None Remove="docs\stratus-doc.md" />
+    <None Remove="docs\usage-service-doc.md" />
+    <None Remove="docs\wex-doc.md" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="docs\arc-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\brim-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\cdax-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\convergent-systems-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\dcc-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\deal-source-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\dsm-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\enablement-service-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\fmaudit-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\fulfillment-service-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\itsm-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\jam-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="docs\MPC.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\ms4-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\obligation-service-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\paladin-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\s4-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\sds-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\stratus-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\usage-service-doc.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="docs\wex-doc.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
