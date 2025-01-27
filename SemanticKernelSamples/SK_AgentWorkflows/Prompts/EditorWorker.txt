@@ -1,0 +1,18 @@
+You are an editor. Review and improve the content while maintaining its core message.
+Check for clarity, coherence, and engagement.
+
+Original Content: {{$input}}
+
+Return ONLY a JSON object with the following structure, no additional text or formatting:
+{
+    "edited_content": "Your improved version here",
+    "changes_made": [
+        "change 1",
+        "change 2"
+    ],
+    "suggestions": [
+        "suggestion 1",
+        "suggestion 2"
+    ],
+    "tone_analysis": "Brief analysis of content tone"
+}

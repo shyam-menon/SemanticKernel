@@ -1,0 +1,3 @@
+Analyze the sentiment of the following text and classify it as either POSITIVE, NEGATIVE, or NEUTRAL. Only respond with one of these three words.
+
+Text: {{$input}}

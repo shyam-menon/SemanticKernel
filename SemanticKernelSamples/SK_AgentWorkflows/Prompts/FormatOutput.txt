@@ -1,0 +1,3 @@
+Format the following response in a professional manner with proper capitalization and punctuation. Add a suitable emoji at the end based on the {{$sentiment}} sentiment.
+
+Response: {{$input}}

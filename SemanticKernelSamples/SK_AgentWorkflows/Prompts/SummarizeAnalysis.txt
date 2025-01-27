@@ -1,0 +1,11 @@
+Based on the analysis of multiple customer reviews, provide a concise summary report.
+Focus on identifying patterns, urgent issues, and actionable insights.
+
+Reviews Analysis: {{$input}}
+
+Format your response as follows:
+1. Overall Sentiment Distribution
+2. Top Issues Identified
+3. Urgent Action Items
+4. Positive Highlights
+5. Recommendations

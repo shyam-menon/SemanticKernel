@@ -1,0 +1,10 @@
+Analyze the following customer review and provide insights in JSON format with these fields:
+- sentiment: (POSITIVE, NEGATIVE, or NEUTRAL)
+- key_points: (array of main points mentioned)
+- category: (product quality, customer service, pricing, delivery, or usability)
+- action_needed: (boolean indicating if this needs immediate attention)
+- priority: (1-5, where 5 is highest priority)
+
+Review: {{$input}}
+
+Respond only with the JSON object, no additional text.

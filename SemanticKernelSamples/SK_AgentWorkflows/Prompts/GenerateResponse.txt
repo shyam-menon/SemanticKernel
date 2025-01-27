@@ -1,0 +1,3 @@
+Based on the {{$sentiment}} sentiment, generate an appropriate response to the following text. Keep the response concise and relevant.
+
+Original text: {{$input}}

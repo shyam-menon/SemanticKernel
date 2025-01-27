@@ -1,0 +1,4 @@
+Analyze the following user query and determine which department it should be routed to. Choose from: SALES, SUPPORT, BILLING, or HR.
+Only respond with one of these four department names in uppercase.
+
+Query: {{$input}}
