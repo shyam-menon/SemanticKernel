@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SK_AgentTroubleshoot", "SK_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_RAGOpenAI", "SK_RAGOpenAI\SK_RAGOpenAI.csproj", "{05D8AA89-E7B9-4E70-BEFF-8F8BBE64A303}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_AgentWorkflows", "SK_AgentWorkflows\SK_AgentWorkflows.csproj", "{63C03078-0488-42A3-9A07-143513CAAFC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{05D8AA89-E7B9-4E70-BEFF-8F8BBE64A303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05D8AA89-E7B9-4E70-BEFF-8F8BBE64A303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05D8AA89-E7B9-4E70-BEFF-8F8BBE64A303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63C03078-0488-42A3-9A07-143513CAAFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C03078-0488-42A3-9A07-143513CAAFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C03078-0488-42A3-9A07-143513CAAFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C03078-0488-42A3-9A07-143513CAAFC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
