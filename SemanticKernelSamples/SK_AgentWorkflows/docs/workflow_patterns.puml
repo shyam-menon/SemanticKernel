@@ -1,0 +1,169 @@
+@startuml Semantic Kernel Workflow Patterns
+
+skinparam componentStyle rectangle
+skinparam linetype ortho
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+
+' Common Components
+package "Common" {
+    [Program.cs] as Main
+    [SK_AgentWorkflows.csproj] as Project
+}
+
+' 1. Prompt Chaining
+package "Prompt Chaining" {
+    component "Examples/PromptChaining.cs" as PromptChaining {
+        [GenerateResponse]
+        [FormatOutput]
+    }
+    
+    package "Prompts" as ChainPrompts {
+        [GenerateResponse.txt] as GenResponsePrompt
+        [FormatOutput.txt] as FormatPrompt
+    }
+    
+    GenResponsePrompt --> GenerateResponse
+    GenerateResponse --> FormatOutput
+    FormatPrompt --> FormatOutput
+}
+
+' 2. Routing
+package "Routing" {
+    component "Examples/Routing.cs" as Routing {
+        [RouteQuery]
+        [GenerateDepartmentResponse]
+    }
+    
+    package "Prompts" as RoutingPrompts {
+        [RouteQuery.txt] as RoutePrompt
+        [GenerateDepartmentResponse.txt] as DeptPrompt
+    }
+    
+    RoutePrompt --> RouteQuery
+    RouteQuery --> GenerateDepartmentResponse
+    DeptPrompt --> GenerateDepartmentResponse
+}
+
+' 3. Tool Use
+package "Tool Use" {
+    component "Examples/ToolUse.cs" as ToolUse {
+        [MathOperations]
+    }
+    
+    package "Tools" {
+        [Native Functions] as NativeFuncs
+    }
+    
+    NativeFuncs --> MathOperations
+}
+
+' 4. Parallelization
+package "Parallelization" {
+    component "Examples/Parallelization.cs" as Parallel {
+        [ProcessReviews]
+    }
+    
+    package "Prompts" as ParallelPrompts {
+        [AnalyzeReview.txt] as ReviewPrompt
+        [AnalyzeSentiment.txt] as SentimentPrompt
+        [SummarizeAnalysis.txt] as SummaryPrompt
+    }
+    
+    ReviewPrompt --> ProcessReviews
+    SentimentPrompt --> ProcessReviews
+    SummaryPrompt --> ProcessReviews
+}
+
+' 5. Orchestrator-Workers
+package "Orchestrator-Workers" {
+    component "Examples/OrchestratorWorkers.cs" as OrchestratorWorkers {
+        [Orchestrator]
+        [ResearchWorker]
+        [WriterWorker]
+        [EditorWorker]
+        [FactCheckerWorker]
+    }
+    
+    package "Prompts" as WorkerPrompts {
+        [ContentOrchestrator.txt] as OrchPrompt
+        [ResearchWorker.txt] as ResearchPrompt
+        [WriterWorker.txt] as WriterPrompt
+        [EditorWorker.txt] as EditorPrompt
+        [FactCheckerWorker.txt] as FactPrompt
+    }
+    
+    OrchPrompt --> Orchestrator
+    ResearchPrompt --> ResearchWorker
+    WriterPrompt --> WriterWorker
+    EditorPrompt --> EditorWorker
+    FactPrompt --> FactCheckerWorker
+    
+    Orchestrator --> ResearchWorker
+    Orchestrator --> WriterWorker
+    Orchestrator --> EditorWorker
+    Orchestrator --> FactCheckerWorker
+}
+
+' 6. Evaluator-Optimizer
+package "Evaluator-Optimizer" {
+    component "Examples/EvaluatorOptimizer.cs" as EvalOpt {
+        [CopyGenerator]
+        [CopyEvaluator]
+        [CopyOptimizer]
+    }
+    
+    package "Prompts" as EvalPrompts {
+        [CopyGenerator.txt] as GenPrompt
+        [CopyEvaluator.txt] as EvalPrompt
+        [CopyOptimizer.txt] as OptPrompt
+    }
+    
+    GenPrompt --> CopyGenerator
+    EvalPrompt --> CopyEvaluator
+    OptPrompt --> CopyOptimizer
+    
+    CopyGenerator --> CopyEvaluator
+    CopyEvaluator --> CopyOptimizer
+    CopyOptimizer ..> CopyGenerator : "Feedback Loop"
+}
+
+' 7. Agents
+package "Agents" {
+    component "Examples/Agents.cs" as Agents {
+        [AgentPlanner]
+        [AgentExecutor]
+        [AgentMonitor]
+    }
+    
+    package "Prompts" as AgentPrompts {
+        [AgentPlanner.txt] as PlanPrompt
+        [AgentExecutor.txt] as ExecPrompt
+        [AgentMonitor.txt] as MonitorPrompt
+    }
+    
+    package "Tools" as AgentTools {
+        [ProjectTools.cs] as ProjTools
+    }
+    
+    PlanPrompt --> AgentPlanner
+    ExecPrompt --> AgentExecutor
+    MonitorPrompt --> AgentMonitor
+    ProjTools --> AgentExecutor
+    
+    AgentPlanner --> AgentExecutor
+    AgentExecutor --> AgentMonitor
+    AgentMonitor ..> AgentPlanner : "Adaptation Loop"
+}
+
+' Main Program Dependencies
+Main --> PromptChaining
+Main --> Routing
+Main --> ToolUse
+Main --> Parallel
+Main --> OrchestratorWorkers
+Main --> EvalOpt
+Main --> Agents
+
+@enduml
