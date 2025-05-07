@@ -1,0 +1,86 @@
+@startuml Decentralized Orchestration Pattern
+
+skinparam componentStyle rectangle
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+
+title Decentralized Orchestration Pattern with Semantic Kernel
+
+actor User
+
+package "Multi-Agent System" {
+    component [AgentCommunicationHub] as Hub
+    
+    component [PeerAgent: Research] as Research
+    component [PeerAgent: Analysis] as Analysis
+    component [PeerAgent: Writing] as Writing
+    component [PeerAgent: Review] as Review
+    
+    database "Reports" as Reports
+    file "Logs" as Logs
+}
+
+User -down-> Hub : 1. Submit Request
+Hub -down-> Research : 2. Initial Task
+
+Research -right-> Analysis : 3a. Query Capability
+Analysis -right-> Writing : 3b. Query Capability
+Writing -right-> Review : 3c. Query Capability
+
+Research -down-> Analysis : 4a. Delegate Task (if needed)
+Analysis -down-> Writing : 4b. Delegate Task (if needed)
+Writing -down-> Review : 4c. Delegate Task (if needed)
+Review -down-> Research : 4d. Delegate Task (if needed)
+
+Research -up-> Hub : 5a. Task Result
+Analysis -up-> Hub : 5b. Task Result
+Writing -up-> Hub : 5c. Task Result
+Review -up-> Hub : 5d. Task Result
+
+Hub -up-> User : 6. Final Report
+Hub -right-> Reports : Save Report
+Hub -right-> Logs : Log Interactions
+
+note right of Hub
+  The Communication Hub:
+  - Routes messages between agents
+  - Tracks message history
+  - Logs all interactions
+  - Registers agents in the network
+end note
+
+note left of Research
+  PeerAgent:
+  - Self-determines task relevance
+  - Delegates tasks to other agents
+  - Processes tasks within specialty
+  - Introduces capabilities to network
+end note
+
+note right of Analysis
+  PeerAgent:
+  - Self-determines task relevance
+  - Delegates tasks to other agents
+  - Processes tasks within specialty
+  - Introduces capabilities to network
+end note
+
+note left of Writing
+  PeerAgent:
+  - Self-determines task relevance
+  - Delegates tasks to other agents
+  - Processes tasks within specialty
+  - Introduces capabilities to network
+end note
+
+note right of Review
+  PeerAgent:
+  - Self-determines task relevance
+  - Delegates tasks to other agents
+  - Processes tasks within specialty
+  - Introduces capabilities to network
+end note
+
+@enduml

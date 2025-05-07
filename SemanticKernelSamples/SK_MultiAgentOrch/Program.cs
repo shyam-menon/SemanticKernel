@@ -60,6 +60,9 @@ var orchestrator = new OrchestratorAgent(
     agentSpecialties,
     loggerFactory.CreateLogger<OrchestratorAgent>());
 
+// Create the decentralized orchestration instance
+var decentralizedOrchestration = new DecentralizedOrchestration(loggerFactory, apiKey, endpoint, deploymentName);
+
 // Process a user request
 Console.WriteLine("Enter your request (or 'exit' to quit):");
 string? userInput;
@@ -88,20 +91,47 @@ while ((userInput = Console.ReadLine()) != "exit")
         Console.WriteLine("\nRunning in real mode (API calls will be made to Azure OpenAI).");
     }
     
+    // Ask the user whether to use centralized or decentralized orchestration
+    Console.WriteLine("\nChoose orchestration pattern:");
+    Console.WriteLine("1. Centralized (orchestrator agent coordinates all tasks)");
+    Console.WriteLine("2. Decentralized (agents coordinate directly with each other)");
+    Console.Write("Enter your choice (1 or 2): ");
+    
+    string? patternChoice = Console.ReadLine();
+    bool useDecentralizedPattern = patternChoice == "2"; // Default to centralized unless explicitly choosing 2
+    
+    if (useDecentralizedPattern)
+    {
+        Console.WriteLine("\nUsing decentralized orchestration pattern.");
+    }
+    else
+    {
+        Console.WriteLine("\nUsing centralized orchestration pattern.");
+    }
+    
     var conversationId = Guid.NewGuid().ToString();
     logger.LogInformation($"Processing user request with conversation ID: {conversationId}");
     
     try
     {
-        var response = await orchestrator.ProcessUserRequestAsync(userInput, conversationId);
-        logger.LogInformation($"Initial orchestrator response: {response.MessageType}");
-        
-        // In a real application, you would continue monitoring the workflow
-        // For this sample, we'll just wait a bit and then check the status
-        await Task.Delay(2000);
-        
-        // Simulate receiving updates from agents
-        await SimulateAgentUpdatesAsync(communicationHub, conversationId, agents, userInput, useSimulationMode);
+        if (useDecentralizedPattern)
+        {
+            // Use decentralized orchestration pattern
+            await decentralizedOrchestration.RunAsync(userInput, useSimulationMode);
+        }
+        else
+        {
+            // Use centralized orchestration pattern
+            var response = await orchestrator.ProcessUserRequestAsync(userInput, conversationId);
+            logger.LogInformation($"Initial orchestrator response: {response.MessageType}");
+            
+            // In a real application, you would continue monitoring the workflow
+            // For this sample, we'll just wait a bit and then check the status
+            await Task.Delay(2000);
+            
+            // Simulate receiving updates from agents
+            await SimulateAgentUpdatesAsync(communicationHub, conversationId, agents, userInput, useSimulationMode);
+        }
     }
     catch (Exception ex)
     {

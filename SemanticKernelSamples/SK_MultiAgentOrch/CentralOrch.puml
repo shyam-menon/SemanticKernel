@@ -1,0 +1,80 @@
+@startuml Centralized Orchestration Pattern
+
+skinparam componentStyle rectangle
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+
+title Centralized Orchestration Pattern with Semantic Kernel
+
+actor User
+
+package "Multi-Agent System" {
+    component [AgentCommunicationHub] as Hub
+    component [OrchestratorAgent] as Orchestrator
+    
+    component [SpecializedAgent: Researcher] as Researcher
+    component [SpecializedAgent: Analyst] as Analyst
+    component [SpecializedAgent: Writer] as Writer
+    component [SpecializedAgent: Reviewer] as Reviewer
+    
+    database "Reports" as Reports
+    file "Logs" as Logs
+}
+
+User -down-> Orchestrator : 1. Submit Request
+Orchestrator -down-> Hub : 2. Coordinate Tasks
+
+Hub -down-> Researcher : 3a. Research Task
+Hub -down-> Analyst : 3b. Analysis Task
+Hub -down-> Writer : 3c. Writing Task
+Hub -down-> Reviewer : 3d. Review Task
+
+Researcher -up-> Hub : 4a. Research Results
+Analyst -up-> Hub : 4b. Analysis Results
+Writer -up-> Hub : 4c. Writing Results
+Reviewer -up-> Hub : 4d. Review Results
+
+Hub -up-> Orchestrator : 5. Collect Results
+Orchestrator -up-> User : 6. Final Report
+Orchestrator -right-> Reports : Save Report
+Hub -right-> Logs : Log Interactions
+
+note right of Orchestrator
+  The Orchestrator Agent:
+  - Analyzes user request
+  - Creates workflow plan
+  - Assigns tasks to agents
+  - Manages dependencies
+  - Compiles final results
+end note
+
+note right of Hub
+  The Communication Hub:
+  - Routes messages between agents
+  - Tracks message history
+  - Logs all interactions
+end note
+
+note bottom of Researcher
+  Specialized in gathering
+  information and data
+end note
+
+note bottom of Analyst
+  Specialized in analyzing
+  data and providing insights
+end note
+
+note bottom of Writer
+  Specialized in creating
+  well-written content
+end note
+
+note bottom of Reviewer
+  Specialized in reviewing
+  and improving content
+end note
+
+@enduml
