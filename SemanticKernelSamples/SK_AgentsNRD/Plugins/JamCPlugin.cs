@@ -120,6 +120,20 @@ namespace SK_AgentsNRD.Plugins
         {
             _logger.LogInformation($"Function called: CheckCredentials for device {deviceId}");
             
+            // Check if credentials have been updated by the CredentialPlugin
+            if (CredentialPlugin.DeviceCredentialStatus.TryGetValue(deviceId, out var updatedStatus))
+            {
+                // Update the device state to reflect the current credential status
+                if (_devices.ContainsKey(deviceId))
+                {
+                    _devices[deviceId].CredentialStatus = updatedStatus;
+                    _logger.LogInformation($"Device {deviceId} credential status updated to: {updatedStatus}");
+                }
+                
+                _logger.LogInformation($"Credential check completed for device {deviceId}: {updatedStatus}");
+                return updatedStatus;
+            }
+            
             if (!_devices.ContainsKey(deviceId))
             {
                 var errorMessage = $"Device {deviceId} not found in JamC system";
@@ -129,7 +143,7 @@ namespace SK_AgentsNRD.Plugins
 
             var device = _devices[deviceId];
             var status = $"Credential Status for Device {deviceId}:\n" +
-                       $"Status: {device.CredentialStatus}\n";
+               $"Status: {device.CredentialStatus}\n";
 
             switch (device.CredentialStatus)
             {
@@ -172,6 +186,10 @@ namespace SK_AgentsNRD.Plugins
             // Update the credentials
             device.CredentialStatus = "Valid";
             device.LastError = "None";
+            
+            // Update the shared credential status in CredentialPlugin
+            CredentialPlugin.DeviceCredentialStatus[deviceId] = "Valid";
+            _logger.LogInformation($"Updated shared credential status for device {deviceId} to Valid");
             
             var result = $"Credentials updated for Device {deviceId}:\n" +
                        $"Previous Status: {previousStatus}\n" +

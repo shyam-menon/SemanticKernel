@@ -6,6 +6,8 @@ The NRD (Non-Reporting Device) Issue Resolution System is a multi-agent AI appli
 
 ## Key Features
 
+ 
+
 - **Multi-Agent Architecture**: Specialized agents for monitoring, diagnosis, remediation, and documentation
 - **Automatic Issue Resolution**: End-to-end workflow from detection to resolution
 - **Simulation Mode**: Test and demonstrate without making API calls or incurring costs
@@ -16,14 +18,19 @@ The NRD (Non-Reporting Device) Issue Resolution System is a multi-agent AI appli
 
 ### Core Components
 
+ 
+
 1. **NRDAgentsOrchestrator**: Coordinates the workflow between agents
 2. **DeviceState**: Tracks device status and credential information
 3. **Mock Plugins**:
+
    - **JamCPlugin**: Simulates device management system
    - **SplunkPlugin**: Simulates log retrieval and data collection verification
    - **CredentialPlugin**: Simulates credential management
 
 ### Agent Roles
+
+ 
 
 1. **MonitoringAgent**: Detects NRD events and retrieves logs
 2. **DiagnosticAgent**: Analyzes root causes of NRD issues
@@ -34,6 +41,8 @@ The NRD (Non-Reporting Device) Issue Resolution System is a multi-agent AI appli
 
 ### Resolution Workflow
 
+ 
+
 1. **Detection**: MonitoringAgent identifies a device that is not reporting data
 2. **Diagnosis**: DiagnosticAgent determines the root cause (e.g., expired credentials, network issues)
 3. **Remediation**: RemediationAgent takes appropriate action to fix the issue
@@ -42,6 +51,8 @@ The NRD (Non-Reporting Device) Issue Resolution System is a multi-agent AI appli
 
 ### Agent Selection Logic
 
+ 
+
 The orchestrator determines which agent to activate next based on the current state:
 - If monitoring detects an issue → DiagnosticAgent
 - If diagnosis identifies credential issues → RemediationAgent
@@ -49,6 +60,8 @@ The orchestrator determines which agent to activate next based on the current st
 - If remediation fails → DiagnosticAgent (for reassessment)
 
 ### Termination Criteria
+
+ 
 
 The workflow terminates when:
 - The issue has been successfully resolved
@@ -59,11 +72,15 @@ The workflow terminates when:
 
 ### Built With
 
+ 
+
 - **.NET 8**: Core framework
 - **Semantic Kernel 1.18.2+**: For AI orchestration and agent management
 - **Azure OpenAI**: For LLM capabilities (with simulation fallback)
 
 ### Key Classes and Methods
+
+ 
 
 - **NRDAgentsOrchestrator.HandleNRDIssue()**: Main entry point for issue resolution
 - **GetAgentResponseAsync()**: Retrieves responses from agents
@@ -74,21 +91,28 @@ The workflow terminates when:
 
 ### Prerequisites
 
+ 
+
 - Azure OpenAI service (optional - system can run in simulation mode)
 - .NET 8 SDK
 
 ### Configuration
 
+ 
+
 1. **Azure OpenAI Credentials**:
+
    - Set environment variables: `AZURE_ENDPOINT`, `AZURE_API_KEY`, and `DEPLOYMENT_NAME`
    - Or use user secrets (recommended for development):
-     ```
-     dotnet user-secrets set AZURE_ENDPOINT <your-endpoint>
-     dotnet user-secrets set AZURE_API_KEY <your-api-key>
-     dotnet user-secrets set DEPLOYMENT_NAME <your-deployment-name>
-     ```
+
+     ```csharp
+dotnet user-secrets set "AZURE_ENDPOINT" "your-azure-endpoint"
+dotnet user-secrets set "AZURE_API_KEY" "your-api-key"
+dotnet user-secrets set "DEPLOYMENT_NAME" "your-deployment-name"
+```
 
 2. **Plugin Integration**:
+
    - Replace mock plugins with real implementations by maintaining the same interface
    - Ensure proper error handling in real implementations
 

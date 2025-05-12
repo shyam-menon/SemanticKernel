@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 namespace SK_AgentsNRD.Plugins
 {
@@ -14,6 +15,8 @@ namespace SK_AgentsNRD.Plugins
     /// </summary>
     public class CredentialPlugin
     {
+        // Static dictionary to maintain credential status across instances
+        public static ConcurrentDictionary<string, string> DeviceCredentialStatus { get; } = new ConcurrentDictionary<string, string>();
         private readonly ILogger<CredentialPlugin> _logger;
         private readonly Dictionary<string, DeviceCredential> _credentials;
 
@@ -147,6 +150,9 @@ namespace SK_AgentsNRD.Plugins
                     Type = "Certificate"
                 };
                 
+                // Update the static credential status to Valid
+                DeviceCredentialStatus[deviceId] = "Valid";
+                
                 _logger.LogInformation($"New credentials created for device {deviceId}");
                 return $"New credentials have been generated for device {deviceId}. Expiration date: {DateTime.Now.AddDays(365).ToShortDateString()}";
             }
@@ -203,6 +209,10 @@ namespace SK_AgentsNRD.Plugins
             credential.Status = "Valid";
             credential.ExpirationDate = DateTime.Now.AddDays(365);
             credential.LastRotated = DateTime.Now;
+            
+            // Update the shared credential status
+            DeviceCredentialStatus[deviceId] = "Valid";
+            _logger.LogInformation($"Updated shared credential status for device {deviceId} to Valid");
             
             _logger.LogInformation($"Credentials rotated for device {deviceId}");
             return $"Credentials have been rotated for device {deviceId}. New expiration date: {DateTime.Now.AddDays(365).ToShortDateString()}";
