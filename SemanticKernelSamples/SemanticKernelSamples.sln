@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SK_MultiAgentOrch", "SK_Mul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_AgentsNRD", "SK_AgentsNRD\SK_AgentsNRD.csproj", "{B22E52B1-A5D5-4EB1-9C4B-067F55530C9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SK_Telemetry", "SK_Telemetry\SK_Telemetry.csproj", "{D38FF9CF-6ABF-48F4-9E68-E3B7A8A4F4CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{B22E52B1-A5D5-4EB1-9C4B-067F55530C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B22E52B1-A5D5-4EB1-9C4B-067F55530C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B22E52B1-A5D5-4EB1-9C4B-067F55530C9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D38FF9CF-6ABF-48F4-9E68-E3B7A8A4F4CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D38FF9CF-6ABF-48F4-9E68-E3B7A8A4F4CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D38FF9CF-6ABF-48F4-9E68-E3B7A8A4F4CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D38FF9CF-6ABF-48F4-9E68-E3B7A8A4F4CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
